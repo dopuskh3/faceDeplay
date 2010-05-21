@@ -59,7 +59,7 @@ string ofxDirList::getPath(int pos){
 
 //----------------------------------------------------------
 int ofxDirList::listDir(string directory){
-    directory = ofToDataPath(directory);
+    //directory = ofToDataPath(directory);
 
 	nameArray.clear();
 	pathArray.clear();

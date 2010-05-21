@@ -22,8 +22,6 @@ include_directories ( ../../addons/ofxXmlSettings/libs/ ../../addons/ofxXmlSetti
 file ( GLOB_RECURSE ofxOpenCv ../../addons/ofxOpenCv/src/* )
 include_directories ( ../../addons/ofxOpenCv/src/ ) 
 
-file( GLOB_RECURSE ofxCvHaarFinder ../../addons/ofxCvHaarFinder/src/* ) 
-include_directories ( ../../addons/ofxCvHaarFinder/src/ )
 
 # OpenCv addon ##################################
 if ( CMAKE_SYSTEM_NAME MATCHES "Linux" ) 
@@ -48,7 +46,7 @@ add_executable( deplay
     ${app_sources_files}
     ${ofxVectorMath}
     ${ofxOpenCv}
-    ${ofxCvHaarFinder}
+#    ${ofxCvHaarFinder}
     #${ofxMSAInteractiveObject}
     #${ofxXmlSettings}
     #${ofxSimpleGuiToo})

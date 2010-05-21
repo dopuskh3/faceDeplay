@@ -10,6 +10,9 @@ void testApp::setup(){
   ofBackground(20,20,20);
 	//ofSetFrameRate(32);
 
+
+  ofSetDataPathRoot("data/");
+
   vidGrabber.setVerbose(false);
   //vidGrabber.setDeviceID(1);
   vidGrabber.initGrabber(WIDTH, HEIGHT); 
