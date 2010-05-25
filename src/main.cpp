@@ -8,7 +8,7 @@ int main( ){
   
     ofSetLogLevel(OF_LOG_VERBOSE);
     ofEnableArbTex();
-	ofSetupOpenGL(1280, 512, OF_WINDOW);			// <-------- setup the GL context
+	ofSetupOpenGL(1280, 512, OF_FULLSCREEN);
 
 
 	// this kicks off the running of my app

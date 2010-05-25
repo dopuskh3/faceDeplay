@@ -82,14 +82,21 @@ void vidQueue::draw(){
     players[1]->draw(width/2, height/2, width/2, height/2); 
     
   }
-  // 1 to 2 
-  
-  // 2 to 3
-  
-  // 3 to 4
-  
-  // 4 to 3
-  
-  // 3 to 2
+ if (players.size() == 3){
+    
+    players[0]->draw(0, 0, width/2, height/2); 
+    players[1]->draw(width/2, height/2, width/2, height/2); 
+    players[2]->draw(width/2, 0, width/2, height/2); 
+    
+  }
+
+ if (players.size() == 4){
+    
+    players[0]->draw(0, 0, width/2, height/2); 
+    players[1]->draw(width/2, height/2, width/2, height/2); 
+    players[2]->draw(width/2, 0, width/2, height/2); 
+    players[3]->draw(0, height/2, width/2, height/2); 
+    
+  }
   
 }

@@ -23,7 +23,9 @@ void testApp::setup(){
   deplay.init();
   
   
-  vq.init(640, 512);
+  //vq.init(640, 512);
+
+  vq.init(1280, 1024); //, 512);
 
 }
 
@@ -58,8 +60,8 @@ void testApp::draw(){
   //gimage.draw(0,0); 
   //deplay.draw();
   
-  gimage.draw(640, 0);
-  deplay.draw(640, 0);
+  //gimage.draw(640, 0);
+  //deplay.draw(640, 0);
   //player.draw(100, 100, 200, 200);
   vq.draw();
   //skin_classifier.draw(700, 700);

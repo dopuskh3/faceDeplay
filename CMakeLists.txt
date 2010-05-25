@@ -43,6 +43,7 @@ if ( APPLE )
 endif( APPLE )
 
 add_executable( deplay
+    MACOSX_BUNDLE 
     ${app_sources_files}
     ${ofxVectorMath}
     ${ofxOpenCv}
@@ -59,7 +60,6 @@ if ( APPLE )
     set (CMAKE_CXX_FLAGS ${OF_CFLAGS_OTHER} )
     set ( OF_LIBRARIES ${OF_LIBRARIES} "-framework OpenGL") # ${ofx_libs} ${cv_LIBRARIES}) 
     include_directories (${OF_INCLUDE_DIRS}) # ${OF_CFLAGS})
-
 else ( APPLE ) 
     include(FindPkgConfig)
     pkg_check_modules(OF openFrameworks)
@@ -69,3 +69,5 @@ endif ( APPLE )
 
 set ( libs ${OF_LIBRARIES} ${CV_LIBRARIES}) # ${CV_LIBRARIES} )
 target_link_libraries(deplay ${libs})
+
+
