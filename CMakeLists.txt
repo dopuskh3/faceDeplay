@@ -33,17 +33,20 @@ if ( CMAKE_SYSTEM_NAME MATCHES "Linux" )
     # message ( " ${CV_LIBRARIES} - ${CV_INCLUDE_DIRS} ") 
 endif()
 if ( APPLE )
-   include_directories(../../../opencv/OpenCV-2.0.0/include/opencv)
-   find_library(cv cv PATHS ../../../opencv/OpenCV-2.0.0/lib)
-   find_library(highgui highgui PATHS ../../../opencv/OpenCV-2.0.0/lib)
-   find_library(cvaux cvaux PATHS ../../../opencv/OpenCV-2.0.0/lib)
-   find_library(cvcore cxcore PATHS ../../../opencv/OpenCV-2.0.0/lib)
+   include_directories(../../libs/OpenCV/include/opencv)
+   find_library(cv cv PATHS ../../libs/OpenCV/lib)
+   find_library(highgui highgui PATHS ../../libs/OpenCV/lib)
+   find_library(cvaux cvaux PATHS ../../libs/OpenCV/lib)
+   find_library(cvcore cxcore PATHS ../../libs/OpenCV/lib)
+   find_library(opencv_lapack opencv_lapack PATHS ../../libs/OpenCV/3rdparty/lib/ )
+   find_library(zlib zlib PATHS ../../libs/OpenCV/3rdparty/lib/ )
    message("${cv} ${cvaux}")
-   set (CV_LIBRARIES ${cv} ${cvaux} ${cvcore} ${highgui})
+   set (CV_LIBRARIES ${cv} ${cvaux} ${cvcore} ${highgui} ${opencv_lapack} ${zlib})
 endif( APPLE )
 
+
+if (APPLE)
 add_executable( deplay
-    MACOSX_BUNDLE 
     ${app_sources_files}
     ${ofxVectorMath}
     ${ofxOpenCv}
@@ -52,14 +55,31 @@ add_executable( deplay
     #${ofxXmlSettings}
     #${ofxSimpleGuiToo})
     )
+else (APPLE)
+add_executable( deplay
+    ${app_sources_files}
+    ${ofxVectorMath}
+    ${ofxOpenCv}
+#    ${ofxCvHaarFinder}
+    #${ofxMSAInteractiveObject}
+    #${ofxXmlSettings}
+    #${ofxSimpleGuiToo})
+    )
+endif (APPLE)
 
 if ( APPLE ) 
     include(FindPkgConfig)
     pkg_check_modules(OF openFrameworks)
     message( " LIBS : ${OF_LIBRARIES} INCLUDES ${OF_INCLUDE_DIRS}" )
     set (CMAKE_CXX_FLAGS ${OF_CFLAGS_OTHER} )
-    set ( OF_LIBRARIES ${OF_LIBRARIES} "-framework OpenGL") # ${ofx_libs} ${cv_LIBRARIES}) 
+    set ( OF_LIBRARIES ${OF_LIBRARIES} "-framework OpenGL" "-framework QuickTime") # ${ofx_libs} ${cv_LIBRARIES}) 
     include_directories (${OF_INCLUDE_DIRS}) # ${OF_CFLAGS})
+    #find_library(openFrameworks OF_LIBRARIES /usr/local/lib)
+    set_target_properties(deplay
+        PROPERTIES BUILD_WITH_INSTALL_RPATH ON
+         INSTALL_NAME_DIR "@executable_path"
+        )
+
 else ( APPLE ) 
     include(FindPkgConfig)
     pkg_check_modules(OF openFrameworks)
@@ -67,7 +87,7 @@ else ( APPLE )
     include_directories (${OF_INCLUDE_DIRS}) # ${OF_CFLAGS})
 endif ( APPLE )
 
-set ( libs ${OF_LIBRARIES} ${CV_LIBRARIES}) # ${CV_LIBRARIES} )
+set ( libs ${OF_LIBRARIES} ${CV_LIBRARIES} ${freeimage} ${poco} ${lapack} ${cv} ${cvaux} ${cxcore} ${ml}) # ${CV_LIBRARIES} )
 target_link_libraries(deplay ${libs})
 
 

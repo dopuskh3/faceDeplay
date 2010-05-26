@@ -8,7 +8,7 @@ int main( ){
   
     ofSetLogLevel(OF_LOG_VERBOSE);
     ofEnableArbTex();
-	ofSetupOpenGL(1280, 512, OF_FULLSCREEN);
+	ofSetupOpenGL(800, 600, OF_WINDOW); //FULLSCREEN);
 
 
 	// this kicks off the running of my app

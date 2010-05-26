@@ -110,26 +110,21 @@ class faceDeplay {
        resetAllTriggers();  
   }
 
-  void draw(){
-    draw(0, 0);
+  void draw(float x, float y, float w, float h){
     
-  }
-
-  void draw(int x, int y){
-    
-    faceTracker.draw(x, y);
+    faceTracker.draw(x, y, w, h);
     if(bTrigger)
       ofSetColor(0x00FF00);
     else
       ofSetColor(0xFF0000);
     
-    ofDrawBitmapString("iPlayTrigger = " + ofToString(iPlayTrigger), x+10, y+10); 
+    /* ofDrawBitmapString("iPlayTrigger = " + ofToString(iPlayTrigger), x+10, y+10); 
     ofDrawBitmapString("iStopTrigger = " + ofToString(iStopTrigger), x+10, y+30); 
     ofDrawBitmapString("iVdnTrigger  = " + ofToString(iVdnTrigger), x+10, y+60); 
     ofDrawBitmapString("iVupTrigger  = " + ofToString(iVupTrigger), x+10, y+80); 
     ofDrawBitmapString("Faces = " + ofToString(iFacesFound), x+10, y+140);
     ofDrawBitmapString("Playing " + ofToString(bTrigger), x+10, y+110); 
-    
+    */
   }
   
   

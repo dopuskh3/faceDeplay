@@ -40,6 +40,8 @@ class testApp : public ofSimpleApp{
         faceDeplay deplay;
     ofVideoPlayer player;
     vidQueue vq; 
+    bool bDisplayCam; 
+    bool bFullScreen; 
 
 };
 

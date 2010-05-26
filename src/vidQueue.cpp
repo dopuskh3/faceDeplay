@@ -69,33 +69,36 @@ void vidQueue::update(){
   } 
 }
 
-
 void vidQueue::draw(){
+  draw(width, height);
+}
+
+void vidQueue::draw(int w, int h){
     ofSetColor(0xFFFFFF);
 
   if ( players.size() == 1 ){
-    players[0]->draw(0, 0, width, height); 
+    players[0]->draw(0, 0, w, h); 
     
   }
   if (players.size() == 2){
-    players[0]->draw(0, 0, width/2, height/2); 
-    players[1]->draw(width/2, height/2, width/2, height/2); 
+    players[0]->draw(0, 0, w/2, h/2); 
+    players[1]->draw(w/2, h/2, w/2, h/2); 
     
   }
  if (players.size() == 3){
     
-    players[0]->draw(0, 0, width/2, height/2); 
-    players[1]->draw(width/2, height/2, width/2, height/2); 
-    players[2]->draw(width/2, 0, width/2, height/2); 
+    players[0]->draw(0, 0, w/2, h/2); 
+    players[1]->draw(w/2, h/2, w/2, h/2); 
+    players[2]->draw(w/2, 0, w/2, h/2); 
     
   }
 
  if (players.size() == 4){
     
-    players[0]->draw(0, 0, width/2, height/2); 
-    players[1]->draw(width/2, height/2, width/2, height/2); 
-    players[2]->draw(width/2, 0, width/2, height/2); 
-    players[3]->draw(0, height/2, width/2, height/2); 
+    players[0]->draw(0, 0, w/2, h/2); 
+    players[1]->draw(w/2, h/2, w/2, h/2); 
+    players[2]->draw(w/2, 0, w/2, h/2); 
+    players[3]->draw(0, h/2, w/2, h/2); 
     
   }
   

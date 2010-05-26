@@ -27,6 +27,7 @@ class vidQueue
     void pushRandom(); 
     void popRandom();
     void draw(); 
+    void draw(int, int); 
     void update();
     
     int width; 

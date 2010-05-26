@@ -27,13 +27,14 @@ class ofxCvHaarFinder{
                        int minArea, int maxArea,
                        int nConsidered);
     void draw( float x, float y );
+    void draw( float x, float y, float w, float h );
     void setup(string haarFile);
     void setScaleHaar(float scaleHaar);
 
     
-    
+    int width, height;
   protected:
-  
+     
     ofxCvGrayscaleImage  inputCopy;
     CvMemStorage*  contour_storage;
     CvMemStorage*  storage;

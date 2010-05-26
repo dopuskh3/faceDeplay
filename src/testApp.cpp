@@ -10,6 +10,8 @@ void testApp::setup(){
   ofBackground(20,20,20);
 	//ofSetFrameRate(32);
 
+  bDisplayCam = true;
+  bFullScreen = false;
 
   ofSetDataPathRoot("data/");
 
@@ -25,7 +27,7 @@ void testApp::setup(){
   
   //vq.init(640, 512);
 
-  vq.init(1280, 1024); //, 512);
+  vq.init(640, 512); //, 512);
 
 }
 
@@ -56,14 +58,20 @@ void testApp::update(){
 //--------------------------------------------------------------
 void testApp::draw(){
   ofSetColor(255, 255, 255);
+  int width = ofGetWidth(); 
+  int height = ofGetHeight(); 
   //vidGrabber.draw(0, 0);
   //gimage.draw(0,0); 
   //deplay.draw();
   
   //gimage.draw(640, 0);
-  //deplay.draw(640, 0);
   //player.draw(100, 100, 200, 200);
-  vq.draw();
+  vq.draw(width, height);
+  
+ if(bDisplayCam){ 
+  gimage.draw(width - WIDTH/3, height - HEIGHT/4, WIDTH/4, HEIGHT/4);
+  deplay.draw(width - WIDTH/3, height - HEIGHT/4, WIDTH/4, HEIGHT/4);
+ }
   //skin_classifier.draw(700, 700);
   //skin_classifier.draw(700, 700);
 }
@@ -74,10 +82,14 @@ void testApp::keyPressed  (int key){
   switch(key){
     case 'g':
       break;
-    case OF_KEY_UP:
-      break;
     case OF_KEY_DOWN:
+      bDisplayCam = !bDisplayCam;
       break;
+   case OF_KEY_UP:
+      bFullScreen = !bFullScreen; 
+      ofSetFullscreen(bFullScreen);
+      break;
+
   }
 }
 

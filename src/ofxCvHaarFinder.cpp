@@ -21,6 +21,8 @@ static int qsort_carea_compare( const void* _a, const void* _b) {
 ofxCvHaarFinder::ofxCvHaarFinder() {
 	reset();
 	scaleHaar = 1.2;
+    width=1;
+    height=1;
 }
 
 ofxCvHaarFinder::~ofxCvHaarFinder() {
@@ -48,13 +50,33 @@ void ofxCvHaarFinder::setup(string haarFile) {
 	blobs.clear();
 }
 
-void ofxCvHaarFinder::draw( float x, float y ) {
-	
+void ofxCvHaarFinder::draw( float x , float y ){
+  draw(x, y, width, height);
+}
+
+void ofxCvHaarFinder::draw( float x, float y, float w, float h ) {
+  
+    float scalex = 0.0f;
+    float scaley = 0.0f; 
+
+    if (width != 0){
+      scalex = w / width; 
+    } else {
+      scalex = 1.0f; 
+    }
+    if (height != 0){
+      scaley = h / height; 
+    } else {
+      scaley = 1.0f; 
+    }
+
+
 	ofEnableAlphaBlending();
 	ofSetColor( 255,0,200,100 );
     glPushMatrix();
     
 	glTranslatef( x, y, 0.0 );
+    glScalef(scalex, scaley, 0.0f); 
 
 	ofNoFill();
 	for( int i=0; i<blobs.size(); i++ ) {
@@ -82,6 +104,8 @@ void ofxCvHaarFinder::findHaarObjects( ofxCvGrayscaleImage&  input,
     // sizes, ie, if you are finding contours in a 640x480 image but also a 
     // 320x240 image better to make two ofCvContourFinder objects then to use 
     // one, because you will get penalized less.
+    width = input.width;
+    height = input.height;
 
 	if( inputCopy.width == 0 ) {
 		inputCopy.allocate( input.width, input.height );
